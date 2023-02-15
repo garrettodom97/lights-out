@@ -4,46 +4,61 @@ import Tile from "./tile.js";
 
 function Board() {
   let boardSize = 5;
-  const [tiles, setTiles] = useState(generateStartingBoard());
+  const [grid, setGrid] = useState(generateStartingGrid());
+  console.log(grid);
 
-  function generateStartingBoard() {
-    let startingTiles = new Array(5);
+  function generateStartingGrid() {
+    let startingGrid = new Array(5);
     for (let i = 0; i < boardSize; i++) {
-      var tileCols = new Array(5);
+      var gridCols = new Array(5);
       for (let j = 0; j < boardSize; j++) {
-        tileCols[j] = (
-          <Tile
-            id={`${i}${j}`}
-            onClick={() => updateTiles(tiles, { i: i, j: j })}
-            isActive={Math.random() < 0.5}
-          ></Tile>
-        );
+        gridCols[j] = Math.random() < 0.5;
       }
-      startingTiles[i] = tileCols;
+      startingGrid[i] = gridCols;
     }
-    return startingTiles;
+    return startingGrid;
   }
 
-  function updateTiles(tiles, id) {
-    console.log(tiles);
-    for (let i = 0; i < boardSize; i++) {
-      var tileCols = tiles[i];
-      for (let j = 0; j < boardSize; j++) {
-        if (i === id.i && j === id.j) {
-          console.log(tileCols);
-          tileCols[j].props.isActive = !tileCols[j].props.isActive;
-        }
-      }
+  function updateGrid(id, grid) {
+    console.log(grid);
+
+    setGrid(
+      grid.map((gridCols, i) =>
+        gridCols.map((tile, j) => (tile = changeTile(tile, id, i, j)))
+      )
+    );
+
+    console.log(grid);
+  }
+
+  function changeTile(tile, id, i, j) {
+    if (
+      (i === id.i && j === id.j) ||
+      (i === id.i - 1 && j === id.j) ||
+      (i === id.i && j === id.j - 1) ||
+      (i === id.i + 1 && j === id.j) ||
+      (i === id.i && j === id.j + 1)
+    ) {
+      return !tile;
     }
+    return tile;
   }
 
   return (
     <div className="board">
-      {tiles.map((tileCols, i) => {
+      {grid.map((gridCols, i) => {
         return (
           <ul>
-            {tileCols.map((tile, j) => {
-              return <li key={tile.id}> {tile} </li>;
+            {gridCols.map((tile, j) => {
+              return (
+                <li key={tile.id}>
+                  <Tile
+                    key={`${i}${j}`}
+                    onClick={() => updateGrid({ i: i, j: j }, grid)}
+                    isActive={tile}
+                  ></Tile>
+                </li>
+              );
             })}
           </ul>
         );

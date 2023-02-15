@@ -1,12 +1,12 @@
 import React from "react";
 import "./tile.css";
 
-function Tile(id, onClick, isActive) {
+function Tile(props) {
   return (
     <div>
       <button
-        className={isActive ? "tile on" : "tile"}
-        onClick={onClick}
+        className={props.isActive ? "tile on" : "tile"}
+        onClick={props.onClick}
       ></button>
     </div>
   );
