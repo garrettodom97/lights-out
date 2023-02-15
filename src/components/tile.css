@@ -1,0 +1,10 @@
+.tile {
+    background-color: darkgray;
+    border-color: black;
+    height: 75px;
+    width: 75px;
+}
+
+.on {
+    background-color: rgb(218, 218, 61);
+}

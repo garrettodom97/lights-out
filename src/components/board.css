@@ -1,0 +1,14 @@
+.board {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    grid-gap: 25px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 22px;
+}
