@@ -4,6 +4,20 @@
     grid-gap: 25px;
 }
 
+.info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reset {
+    display: flex;
+    height: 35px;
+    width: 75px;
+    align-items: center;
+    justify-content: center;
+}
+
 ul {
     list-style-type: none;
     padding: 0;
@@ -12,3 +26,28 @@ ul {
 li {
     margin-bottom: 22px;
 }
+
+.modal {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: 35%;
+    transform: translate(-50%, -50%);
+    width: 35%;
+    background-color: white;
+  }
+  
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: gray;
+    margin: 15px;
+    padding: 10px;
+  }
+
+  .win-text {
+    margin-top: 0px;
+  }
